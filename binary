@@ -1,0 +1,23 @@
+import pandas as pd
+
+# Function to convert decimal (float or int) to binary
+def decimal_to_binary(decimal_number):
+    if isinstance(decimal_number, float):
+      binary_representation = bin(int.from_bytes((decimal_number).hex().encode(), 'big'))[2:]
+    else:
+        # If the number is an int, convert it to binary
+        binary_representation = bin(decimal_number)[2:]
+    return binary_representation
+
+# Load Excel file into a DataFrame
+excel_file_path = 'C:/Users/Student.BGPN4275/Desktop/input.xlsx'
+df = pd.read_excel(excel_file_path)
+
+# Apply the conversion function to all cells in the DataFrame
+df_binary = df.applymap(decimal_to_binary)
+
+# Display the result
+print("Original DataFrame:")
+print(df)
+print("\nDataFrame with Binary Representation:")
+print(df_binary)
